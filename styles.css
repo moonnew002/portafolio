@@ -1,17 +1,8 @@
 :root{
-  --color-fondo-1: #1a0524;     /* Morado profundo (inicio degradado) */
-  --color-fondo-2: #3a114c;     /* Morado medio */
-  --color-fondo-3: #631543;     /* Magenta oscuro (fin degradado - seguro para texto blanco) */
-  --color-principal: #541e69;
-  /* --color-secundario: #14ff00; */
-  --color-secundario: #b8e84c;
-
-  --color-acento: #feb101;
-
-  /* Textos */
-  --color-texto-claro: #ffffff;
-  --color-texto-oscuro: #110316; /* Para usar sobre bloques verdes o amarillos */
-
+  --color-principal: #fdf6ee;
+  --color-texto: #233f29;
+  --color-acento-secundario: #eff392;
+  --color-acento-primario: #a9acd9;
   --espaciado-pequeno: 15px;
   /* --categoria__elemento */
   --pading-textos: 15px;
@@ -21,7 +12,7 @@
 
 body{
   box-sizing: border-box;
-  background: linear-gradient(135deg, var(--color-fondo-1) 0%, var(--color-fondo-2) 50%, var(--color-fondo-3) 100%);
+  background: var(--color-principal);
   background-attachment: fixed; /* El fondo no se mueve al hacer scroll, se ve más fluido */
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; /* Tipografía limpia y moderna */
   margin: 0px;
@@ -43,12 +34,16 @@ li{
 
 a{
   text-decoration: none;
+  color: black;
+}
+
+h2{
+  /* máximo: 3rem, mínimo: 1.5rem */
+  font-size: clamp(1.3rem, 2vw + 1rem, 2.3rem);
 }
 
 .header-principal{
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: 70px;
   position: sticky;
@@ -59,17 +54,15 @@ a{
 }
 
 .header-principal__nav{
+  flex-grow: 1;
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 15px;
-  /* Fondo semitransparente para ver a través de él */
-  background-color: rgba(255, 255, 255, 0.3); 
+  background-color: var(--color-secundario); 
   
-  /* Efecto de desenfoque (ajusta los píxeles a tu gusto) */
   backdrop-filter: blur(15px); 
   
-  /* Opcional: bordes redondeados y sombra para un mejor diseño */
-  border-radius: var(--radio-borde);
   /*border: 1px solid rgba(255, 255, 255, 0.5);*/
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
@@ -81,14 +74,15 @@ a{
   box-sizing: border-box;
 }
 
+
+
 .nav__item{
-  color: white;
+  color: var(--color-texto);
 }
 
 .nav__item a:visited {
-  color: white;
+  color: var(--color-texto);
 }
-
 main{
   width: 100%;
   height: auto;
@@ -108,6 +102,12 @@ main{
   box-sizing: border-box;
 }
 
+.contenedor-secciones{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
 .header-acerca{
   display: flex;
   flex-wrap: wrap;
@@ -116,42 +116,45 @@ main{
   width: 100%;
 }
 
-#inicio{
-  height: calc(100vh - 70px);
+.fondo-inicio{
   width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-    background-image: url('/imagenes/Ramiel_octahedron.png');
-  background-size:contain;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
-.header-acerca__titulo{
-  /*(mínimo, ideal, máximo*/
+#inicio{
+  height: calc(100vh - 70px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inicio__titulo{
+ /*(mínimo, ideal, máximo*/
   font-size: clamp(2rem, 2vw + 1rem, 5rem);
-  color: var(--color-acento);
+  color: var(--color-texto);
   margin: 0;
 }
 
-.header-acerca__parrafo{
+.inicio__disponibilidad{
   margin: 0;
   font-size: 0.9rem;
   font-weight: 700;
-  background-color: var(--color-secundario);
-  color: var(--color-texto-oscuro); /* ¡Ahora sí es legible! */
   border-radius: var(--radio-borde);
   padding: 4px 12px;
 
+  color: black;
+  background: var(--color-acento-primario);
   letter-spacing: 0.5px;
 }
 
 .acerca__parrafo{
   box-sizing: border-box;
   font-size: clamp(1rem, 0.952vw + 0.785rem, 1.5rem);
-  color: white;
+  color: var(--eva-light);
 }
 
 .social{
@@ -160,30 +163,28 @@ main{
   gap: 15px
 }
 
-.social__item{
-  border-radius: var(--radio-borde);
-}
+
 
 .social__enlaces{
+  border-radius: var(--radio-borde);
+  background: var(--color-acento-primario);
   padding: 5px;
   display: flex;
   gap: 5px;
   align-items: center;
-  color: var(--color-acento);
+  color: black;
 }
 
 .acerca__icono{
   height: 40px;               /* Aquí definimos el alto */
   width: 40px;
-  stroke: var(--color-acento); /* Color inicial usando tu variable */
+  stroke: black; /* Color inicial usando tu variable */
 }
 
 /* Título de la sección */
 /* Clase global para tarjetas y elementos flotantes */
 .efecto-cristal {
-  background-color: rgba(26, 8, 36, 0.6); /* Púrpura ultra oscuro con 60% de opacidad */
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px); /* Soporte para Safari */
   border: 1px solid rgba(255, 255, 255, 0.08); /* Borde sutil brillante */
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   border-radius: var(--radio-borde);
@@ -193,7 +194,7 @@ main{
 /* Efecto sutil al pasar el mouse por las tarjetas */
 .efecto-cristal:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px 0 rgba(184, 232, 76, 0.15); /* Brillo verde neón muy tenue */
+  box-shadow: 0 12px 40px 0 var(--color-acento-primario); /* Brillo verde neón muy tenue */
 }
 
 /* EXPERIENCIA */
@@ -216,7 +217,7 @@ main{
   left: 4px; /* Ajuste milimétrico para centrar la línea con los puntos */
   width: 4px;
   height: 100%;
-  background-color: var(--color-secundario); /* La línea es verde[cite: 1] */
+  background-color: var(--color-acento-primario); /* La línea es verde[cite: 1] */
   border-radius: 2px;
   
 }
@@ -228,7 +229,7 @@ main{
   border-radius: 50%;
   top: 7px; /* medidas por ajustar */
   left: -15px;
-  background-color: var(--color-secundario);
+  background-color: var(--color-acento-primario);
 }
 
 .timeline__item{
@@ -240,20 +241,22 @@ main{
 
 
 
-.experiencia__tituloprincipal{
-  color: white;
+.subtitulos{
+  color: var(--eva-green);
 }
 
 .experiencia__titulo{
-  color: var(--color-acento);
+  font-size: 1.3rem;
 }
 
 .experiencia__empresa{
-  color: white;
+  font-size: 1rem;
+  color: black;
 }
 
 .experiencia__fecha{
-  color: var(--color-secundario);
+  color: black;
+  font-size: 0.8rem;
 }
 
 .experiencia__tarjeta{
@@ -265,7 +268,7 @@ main{
 }
 
 .experiencia__descripcion{
-  color: var(--color-texto-claro);
+  color: var(--eva-dark);
   flex-basis: 600px; /* por ajustar */
   flex-grow: 1;
   flex-shrink: 1;
@@ -301,16 +304,18 @@ main{
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .proyecto__img{
-  flex-basis: 350px; /*ancho de la imagen */
-  border: 1px solid black;
-  flex-grow: 1;
+  flex-basis: 400px;
+  width: 100%;
   flex-shrink: 1;
-  width: 100%; /* La imagen ocupa todo el ancho del contenedor */
-  height: auto;
-  object-fit: cover; /* Ajusta la imagen rellenando el espacio sin deformarse */
+  flex-grow: 1;
+  /*aspect-ratio: 16/9;*/
+  border-radius: var(--radio-borde);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+/*  object-fit: cover; /* Ajusta la imagen rellenando el espacio sin deformarse */
 }
 
 .proyecto__titulo{
@@ -323,7 +328,7 @@ main{
 
 .proyecto__tarjeta{
   flex-grow: 1;
-  flex-basis: 600px;
+  flex-basis: 500px;
 }
 
 
